@@ -30,4 +30,9 @@ public class CommentSteps extends ScenarioSteps {
     public void verifyUserIsGuest() {
         assertThat("User log in as not a Guest", manualPage.getUserRole(), equalTo("Guest"));
     }
+
+    @Step("#actor sort by Newest")
+    public void sortCommentByNewest() {
+        manualPage.sortByNewest();
+    }
 }

@@ -1,4 +1,9 @@
 {
-  "comment": "test",
-  "userName": "Guest"
+  "comment": "testComment",
+  "userName": "Guest",
+  "name": "testName",
+  "email": "random",
+  "password": "testTEST",
+  "live":"Kiyv, Kyiv City, Ukraine",
+  "aboutYou": "testYou"
 }
