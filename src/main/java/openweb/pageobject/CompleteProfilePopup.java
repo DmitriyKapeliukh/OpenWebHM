@@ -24,16 +24,7 @@ public class CompleteProfilePopup extends BasePage {
     }
 
     public void fillProfile(final TestData testData) {
-        Shadow shadow = new Shadow(getDriver());
-        shadow.setImplicitWait(10);
-        try {
-            shadow.setExplicitWait(10, 1);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        WebDriverWait wait = new WebDriverWait(getDriver(), 20);
-        wait.until(ExpectedConditions.elementToBeClickable(liveField));
-
+        getWait().until(ExpectedConditions.elementToBeClickable(liveField));
         liveField.sendKeys(testData.getLive());
         aboutYouField.sendKeys(testData.getAboutYou());
         doneButton.click();

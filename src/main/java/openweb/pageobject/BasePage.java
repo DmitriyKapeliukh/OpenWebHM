@@ -1,11 +1,13 @@
 package openweb.pageobject;
 
+import io.github.sukgu.Shadow;
 import io.github.sukgu.support.ElementFieldDecorator;
 import net.serenitybdd.core.pages.PageObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage extends PageObject {
 
@@ -14,6 +16,20 @@ public class BasePage extends PageObject {
 /*        ElementFieldDecorator decorator = new ElementFieldDecorator(new DefaultElementLocatorFactory(driver));
         // need to use decorator if you want to use @FindElementBy in your PageFactory model.
         PageFactory.initElements(decorator, this);*/
+    }
+
+    protected Shadow getShadowDriver() {
+        Shadow shadow = new Shadow(getDriver());
+        shadow.setImplicitWait(10);
+        try {
+            shadow.setExplicitWait(10, 1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } return shadow;
+    }
+
+    protected WebDriverWait getWait() {
+        return new WebDriverWait(getDriver(), 20);
     }
 
     protected WebElement getRootElement(final WebElement root) {

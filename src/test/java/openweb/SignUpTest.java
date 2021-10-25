@@ -28,5 +28,6 @@ public class SignUpTest extends BaseTest {
         commentSteps.submitComment(testData);
         createAccountSteps.createAccount(testData);
         createAccountSteps.completeProfile(testData);
+        commentSteps.verifyComment();
     }
 }

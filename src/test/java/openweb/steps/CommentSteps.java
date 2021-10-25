@@ -35,4 +35,10 @@ public class CommentSteps extends ScenarioSteps {
     public void sortCommentByNewest() {
         manualPage.sortByNewest();
     }
+
+    @Step("#actor verify hiss own comment")
+    public void verifyComment() {
+        sortCommentByNewest();
+        manualPage.getList();
+    }
 }
