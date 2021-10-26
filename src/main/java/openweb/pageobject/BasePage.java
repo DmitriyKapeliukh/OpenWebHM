@@ -1,8 +1,11 @@
 package openweb.pageobject;
 
+import com.google.common.base.Predicate;
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.github.sukgu.Shadow;
 import io.github.sukgu.support.ElementFieldDecorator;
 import net.serenitybdd.core.pages.PageObject;
+import net.thucydides.core.webdriver.WebDriverFacade;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -12,10 +15,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class BasePage extends PageObject {
 
     public BasePage(final WebDriver driver) {
-        super(driver);
-/*        ElementFieldDecorator decorator = new ElementFieldDecorator(new DefaultElementLocatorFactory(driver));
-        // need to use decorator if you want to use @FindElementBy in your PageFactory model.
-        PageFactory.initElements(decorator, this);*/
+        super(driver, new Predicate<PageObject>() {
+            @Override
+            public boolean apply(final PageObject page) {
+                ElementFieldDecorator decorator = new ElementFieldDecorator(new DefaultElementLocatorFactory(driver));
+                PageFactory.initElements(decorator, this);
+                return true;
+            }
+        });
     }
 
     protected Shadow getShadowDriver() {

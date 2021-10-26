@@ -5,6 +5,8 @@ import net.thucydides.core.steps.ScenarioSteps;
 import openweb.POJO.TestData;
 import openweb.pageobject.RcManualPage;
 
+import java.util.List;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -12,6 +14,11 @@ public class CommentSteps extends ScenarioSteps {
 
     private RcManualPage manualPage;
     private String actor;
+
+    @Step("#actor delete his own comment")
+    public void deleteComment(final String userName) {
+        manualPage.deleteComment(userName);
+    }
 
     @Step("#actor open the page")
     public void getPage() {
@@ -21,7 +28,7 @@ public class CommentSteps extends ScenarioSteps {
     @Step("#actor submit comment")
     public void submitComment(final TestData testData) {
         manualPage.fillComment(testData.getComment());
-        manualPage.fillUsername(testData.getUserName());
+        manualPage.fillUsername(testData.getCommentUserName());
         manualPage.clickSendButton();
         manualPage.clickJoinUs();
     }
@@ -36,9 +43,16 @@ public class CommentSteps extends ScenarioSteps {
         manualPage.sortByNewest();
     }
 
-    @Step("#actor verify hiss own comment")
-    public void verifyComment() {
+    @Step("#actor verify his own comment")
+    public void verifyComment(final TestData data) {
         sortCommentByNewest();
-        manualPage.getList();
+        List<String> names = manualPage.getUserNames();
+        List<String> comments = manualPage.getComments();
+
+        assertThat("User name does not displays on comments section ",
+                names.stream().anyMatch(s -> s.equals(data.getName())));
+
+        assertThat("Comment does not displays on comments section ",
+                comments.stream().anyMatch(s -> s.equals(data.getComment())));
     }
 }

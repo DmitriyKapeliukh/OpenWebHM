@@ -1,7 +1,7 @@
 {
-  "comment": "testComment",
-  "userName": "Guest",
-  "name": "testName",
+  "comment": "random",
+  "commentUserName": "random",
+  "name": "random",
   "email": "random",
   "password": "testTEST",
   "live":"Kiyv, Kyiv City, Ukraine",

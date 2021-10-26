@@ -7,6 +7,7 @@ import net.thucydides.junit.annotations.UseTestDataFrom;
 import openweb.POJO.TestData;
 import openweb.steps.CommentSteps;
 import openweb.steps.CreateAccountSteps;
+import openweb.steps.ProfileSteps;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -19,6 +20,8 @@ public class SignUpTest extends BaseTest {
     private CommentSteps commentSteps;
     @Steps
     private CreateAccountSteps createAccountSteps;
+    @Steps
+    private ProfileSteps profileSteps;
 
     @Test
     public void signUpUser() {
@@ -28,6 +31,9 @@ public class SignUpTest extends BaseTest {
         commentSteps.submitComment(testData);
         createAccountSteps.createAccount(testData);
         createAccountSteps.completeProfile(testData);
-        commentSteps.verifyComment();
+        commentSteps.verifyComment(testData);
+        createAccountSteps.verifyProfile();
+        profileSteps.verifyUserDataOnProfilePage(testData);
+        commentSteps.deleteComment(testData.getName());
     }
 }

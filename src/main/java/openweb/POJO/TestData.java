@@ -18,7 +18,7 @@ import java.util.UUID;
 public class TestData {
 
     String comment;
-    String userName;
+    String commentUserName;
     String name;
     String email;
     String password;
@@ -32,5 +32,20 @@ public class TestData {
     @JsonProperty
     public void setEmail(final String value) {
         this.email = RandomStringUtils.randomAlphabetic(6) + "@gmail.com";
+    }
+
+    @JsonProperty
+    public void setComment(final String value) {
+        this.comment = RandomStringUtils.randomAlphabetic(6);
+    }
+
+    @JsonProperty
+    public void setCommentUserName(final String value) {
+        this.commentUserName = RandomStringUtils.randomAlphabetic(6);
+    }
+
+    @JsonProperty
+    public void setName(final String value) {
+        this.name = RandomStringUtils.randomAlphabetic(6);
     }
 }

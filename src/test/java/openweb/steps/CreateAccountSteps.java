@@ -6,11 +6,19 @@ import net.thucydides.core.steps.ScenarioSteps;
 import openweb.POJO.TestData;
 import openweb.pageobject.CompleteProfilePopup;
 import openweb.pageobject.CreateAccountPage;
+import openweb.pageobject.RcManualPage;
 
 public class CreateAccountSteps extends ScenarioSteps {
 
+    private String actor;
     private CreateAccountPage createAccountPage;
     private CompleteProfilePopup completeProfilePopup;
+    private RcManualPage manualPage;
+
+    @Step("#actor verify his own profile")
+    public void verifyProfile() {
+        manualPage.goToSettings();
+    }
 
     @Step("#actor create account")
     public void createAccount(final TestData testData) {
