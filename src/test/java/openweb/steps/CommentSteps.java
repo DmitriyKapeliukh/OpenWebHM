@@ -15,9 +15,22 @@ public class CommentSteps extends ScenarioSteps {
     private RcManualPage manualPage;
     private String actor;
 
-    @Step("#actor delete his own comment")
-    public void deleteComment(final String userName) {
-        manualPage.deleteComment(userName);
+    @Step("#actor logout")
+    public void logout() {
+        manualPage.logout();
+    }
+
+    @Step("#actor verify his own {0} comment NOT exist")
+    public void verifyCommentNotExist(final String comment) {
+        List<String> comments = manualPage.getComments();
+
+        assertThat("User comment still displays on comments section ",
+                comments.stream().noneMatch(s -> s.equals(comment)));
+    }
+
+    @Step("#actor delete last his own comment")
+    public void deleteLastComment() {
+        manualPage.deleteLastComment();
     }
 
     @Step("#actor open the page")
@@ -35,7 +48,7 @@ public class CommentSteps extends ScenarioSteps {
 
     @Step("#actor verify he is a 'Guest'")
     public void verifyUserIsGuest() {
-        assertThat("User log in as not a Guest", manualPage.getUserRole(), equalTo("Guest"));
+        assertThat("User logged in as not a Guest", manualPage.getUserRole(), equalTo("Guest"));
     }
 
     @Step("#actor sort by Newest")
@@ -43,7 +56,7 @@ public class CommentSteps extends ScenarioSteps {
         manualPage.sortByNewest();
     }
 
-    @Step("#actor verify his own comment")
+    @Step("#actor verify his own data {0} exist")
     public void verifyComment(final TestData data) {
         sortCommentByNewest();
         List<String> names = manualPage.getUserNames();

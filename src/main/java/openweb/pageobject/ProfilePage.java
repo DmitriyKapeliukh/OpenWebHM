@@ -16,7 +16,7 @@ public class ProfilePage extends BasePage {
     @FindElementBy(css = "[class*='src-components-FeedItem'] [class*='TextWrapper']")
     private WebElement comment;
 
-    @FindElementBy(css = "button[title=Close dialog box']")
+    @FindElementBy(css = "button[title='Close dialog box']")
     private WebElement closePopup;
 
     public ProfilePage(final WebDriver driver) {

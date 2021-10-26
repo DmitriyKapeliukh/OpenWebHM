@@ -1,17 +1,13 @@
 package openweb;
 
-import net.serenitybdd.junit.runners.SerenityParameterizedRunner;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Steps;
-import net.thucydides.junit.annotations.UseTestDataFrom;
 import openweb.POJO.TestData;
 import openweb.steps.CommentSteps;
 import openweb.steps.CreateAccountSteps;
 import openweb.steps.ProfileSteps;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import java.util.Collection;
 
 @RunWith(SerenityRunner.class)
 public class SignUpTest extends BaseTest {
@@ -34,6 +30,9 @@ public class SignUpTest extends BaseTest {
         commentSteps.verifyComment(testData);
         createAccountSteps.verifyProfile();
         profileSteps.verifyUserDataOnProfilePage(testData);
-        commentSteps.deleteComment(testData.getName());
+        commentSteps.deleteLastComment();
+        commentSteps.verifyCommentNotExist(testData.getComment());
+        commentSteps.logout();
+        commentSteps.verifyUserIsGuest();
     }
 }

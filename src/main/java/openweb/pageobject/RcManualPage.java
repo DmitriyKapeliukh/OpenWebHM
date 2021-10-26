@@ -17,7 +17,10 @@ public class RcManualPage extends BasePage {
     public static final String COMMENT_CONTAINER = "[class='spcv_editor-wrapper']";
 
     @FindBy(css = "[data-spot-im-module-default-area='conversation'] [data-spot-im-shadow-host*='conversation conversation-survey']")
-    private WebElementFacade root;
+    private WebElementFacade commentRoot;
+
+    @FindBy(css = "[class='content'] [data-spot-im-shadow-host*='conversation conversation-survey']")
+    private WebElement bottomRoot;
 
     @FindElementBy(css = "[id='spotim-sort-by']")
     private WebElement sortBy;
@@ -31,15 +34,34 @@ public class RcManualPage extends BasePage {
     @FindElementBy(css = "button[data-spot-im-class='profile-item']")
     private WebElement profileButton;
 
+    @FindElementBy(css = "button[data-spot-im-class='logout-item']")
+    private WebElement logoutButton;
+
+    @FindElementBy(css = "button[data-spot-im-class='context-menu-item-delete']")
+    private WebElement deleteComment;
+
+    @FindBy(css = "[data-spot-im-shadow-host*='standalone-ui-kit']")
+    List<WebElement> listShadow;
+
     private JoinUsPopup joinUsPopup;
+
+    private DeleteCommentPopup deleteCommentPopup;
 
     public RcManualPage(final WebDriver driver) {
         super(driver);
     }
 
-    public void deleteComment(final String userName) {
+    public void deleteLastComment() {
         WebElement element = getRcManualRoot();
-        element.findElement(By.xpath("//*[contains(text(), '" + userName + "')]/parent::div/div/div"));
+        element.findElement(By.cssSelector("[data-spot-im-class='messages-list']>li [aria-label='Menu']")).click();
+        getWait().until(ExpectedConditions.elementToBeClickable(deleteComment)).click();
+        deleteCommentPopup.confirmDeleteComment();
+        deleteCommentPopup.refreshPage();
+    }
+
+    public void logout() {
+        settingsButton.click();
+        logoutButton.click();
     }
 
     public void goToSettings() {
@@ -69,6 +91,7 @@ public class RcManualPage extends BasePage {
 
     public String getUserRole() {
         WebElement element = getRcManualRoot();
+        element(element.findElement(By.cssSelector("[class*='username']"))).waitUntilVisible();
         return element.findElement(By.cssSelector("[class='spcv_conversation'] [class*='username-wrapper'] [class*='bold']")).getText();
     }
 
@@ -93,6 +116,6 @@ public class RcManualPage extends BasePage {
     }
 
     private WebElement getRcManualRoot() {
-        return getRootElement(root);
+        return getRootElement(commentRoot);
     }
 }

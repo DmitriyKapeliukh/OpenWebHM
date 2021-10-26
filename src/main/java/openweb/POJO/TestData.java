@@ -31,21 +31,21 @@ public class TestData {
 
     @JsonProperty
     public void setEmail(final String value) {
-        this.email = RandomStringUtils.randomAlphabetic(6) + "@gmail.com";
+        this.email = RandomStringUtils.randomAlphabetic(9) + "@gmail.com";
     }
 
     @JsonProperty
     public void setComment(final String value) {
-        this.comment = RandomStringUtils.randomAlphabetic(6);
+        this.comment = RandomStringUtils.randomAlphabetic(9);
     }
 
     @JsonProperty
     public void setCommentUserName(final String value) {
-        this.commentUserName = RandomStringUtils.randomAlphabetic(6);
+        this.commentUserName = RandomStringUtils.randomAlphabetic(9);
     }
 
     @JsonProperty
     public void setName(final String value) {
-        this.name = RandomStringUtils.randomAlphabetic(6);
+        this.name = RandomStringUtils.randomAlphabetic(9);
     }
 }
