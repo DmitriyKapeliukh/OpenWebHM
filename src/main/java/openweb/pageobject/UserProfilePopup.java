@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class ProfilePage extends BasePage {
+public class UserProfilePopup extends BasePage {
 
     @FindElementBy(css = "[data-spot-im-class='user-info-username']")
     private WebElement userName;
@@ -19,7 +19,7 @@ public class ProfilePage extends BasePage {
     @FindElementBy(css = "button[title='Close dialog box']")
     private WebElement closePopup;
 
-    public ProfilePage(final WebDriver driver) {
+    public UserProfilePopup(final WebDriver driver) {
         super(driver);
     }
 

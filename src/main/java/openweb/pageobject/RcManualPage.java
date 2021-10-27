@@ -19,9 +19,6 @@ public class RcManualPage extends BasePage {
     @FindBy(css = "[data-spot-im-module-default-area='conversation'] [data-spot-im-shadow-host*='conversation conversation-survey']")
     private WebElementFacade commentRoot;
 
-    @FindBy(css = "[class='content'] [data-spot-im-shadow-host*='conversation conversation-survey']")
-    private WebElement bottomRoot;
-
     @FindElementBy(css = "[id='spotim-sort-by']")
     private WebElement sortBy;
 
@@ -39,9 +36,6 @@ public class RcManualPage extends BasePage {
 
     @FindElementBy(css = "button[data-spot-im-class='context-menu-item-delete']")
     private WebElement deleteComment;
-
-    @FindBy(css = "[data-spot-im-shadow-host*='standalone-ui-kit']")
-    List<WebElement> listShadow;
 
     private JoinUsPopup joinUsPopup;
 

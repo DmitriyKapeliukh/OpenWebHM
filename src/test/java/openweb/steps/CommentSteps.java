@@ -38,7 +38,7 @@ public class CommentSteps extends ScenarioSteps {
         manualPage.open();
     }
 
-    @Step("#actor submit comment")
+    @Step("#actor submit comment with data {0}")
     public void submitComment(final TestData testData) {
         manualPage.fillComment(testData.getComment());
         manualPage.fillUsername(testData.getCommentUserName());
@@ -56,7 +56,7 @@ public class CommentSteps extends ScenarioSteps {
         manualPage.sortByNewest();
     }
 
-    @Step("#actor verify his own data {0} exist")
+    @Step("#actor verify his own comment data {0} exist")
     public void verifyComment(final TestData data) {
         sortCommentByNewest();
         List<String> names = manualPage.getUserNames();

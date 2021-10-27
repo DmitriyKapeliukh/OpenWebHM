@@ -13,26 +13,26 @@ import org.junit.runner.RunWith;
 public class SignUpTest extends BaseTest {
 
     @Steps
-    private CommentSteps commentSteps;
+    private CommentSteps user;
     @Steps
-    private CreateAccountSteps createAccountSteps;
+    private CreateAccountSteps userAccount;
     @Steps
-    private ProfileSteps profileSteps;
+    private ProfileSteps userProfile;
 
     @Test
     public void signUpUser() {
         TestData testData = TestData.getTestData("rcManual.json");
-        commentSteps.getPage();
-        commentSteps.verifyUserIsGuest();
-        commentSteps.submitComment(testData);
-        createAccountSteps.createAccount(testData);
-        createAccountSteps.completeProfile(testData);
-        commentSteps.verifyComment(testData);
-        createAccountSteps.verifyProfile();
-        profileSteps.verifyUserDataOnProfilePage(testData);
-        commentSteps.deleteLastComment();
-        commentSteps.verifyCommentNotExist(testData.getComment());
-        commentSteps.logout();
-        commentSteps.verifyUserIsGuest();
+        user.getPage();
+        user.verifyUserIsGuest();
+        user.submitComment(testData);
+        userAccount.createAccount(testData);
+        userAccount.completeProfile(testData);
+        user.verifyComment(testData);
+        userAccount.verifyProfile();
+        userProfile.verifyUserDataOnProfilePage(testData);
+        user.deleteLastComment();
+        user.verifyCommentNotExist(testData.getComment());
+        user.logout();
+        user.verifyUserIsGuest();
     }
 }

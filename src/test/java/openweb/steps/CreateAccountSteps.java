@@ -20,7 +20,7 @@ public class CreateAccountSteps extends ScenarioSteps {
         manualPage.goToSettings();
     }
 
-    @Step("#actor create account")
+    @Step("#actor create account with data {0}")
     public void createAccount(final TestData testData) {
         createAccountPage.fillName(testData.getName());
         createAccountPage.fillEmail(testData.getEmail());
@@ -28,7 +28,7 @@ public class CreateAccountSteps extends ScenarioSteps {
         createAccountPage.clickCreateAccount();
     }
 
-    @Step("#actor complete profile")
+    @Step("#actor complete profile with data {0}")
     public void completeProfile(final TestData testData) {
         completeProfilePopup.fillProfile(testData);
 
