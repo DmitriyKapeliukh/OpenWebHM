@@ -62,6 +62,7 @@ public class RcManualPage extends BasePage {
     public void logout() {
         settingsButton.click();
         logoutButton.click();
+        element(getRcManualRoot().findElement(By.cssSelector("[class*='empty-username']"))).waitUntilVisible();
     }
 
     public void goToSettings() {
@@ -91,7 +92,6 @@ public class RcManualPage extends BasePage {
 
     public String getUserRole() {
         WebElement element = getRcManualRoot();
-        element(element.findElement(By.cssSelector("[class*='username']"))).waitUntilVisible();
         return element.findElement(By.cssSelector("[class='spcv_conversation'] [class*='username-wrapper'] [class*='bold']")).getText();
     }
 
